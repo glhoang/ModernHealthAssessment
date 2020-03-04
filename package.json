@@ -1,0 +1,25 @@
+{
+  "name": "modernhealthassessment",
+  "version": "1.0.0",
+  "description": "Modern Health Technical Take Home Assessment",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/glhoang/ModernHealthAssessment.git"
+  },
+  "author": "Gwen Hoang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/glhoang/ModernHealthAssessment/issues"
+  },
+  "homepage": "https://github.com/glhoang/ModernHealthAssessment#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "knex": "^0.20.10",
+    "pg": "^7.18.2"
+  }
+}
