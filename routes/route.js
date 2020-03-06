@@ -2,15 +2,14 @@ const express = require('express')
 const router = express.Router()
 const controller  = require('../controllers/controller')
 
-// define the home page route
 router.get('/', (req, res) => {
-    res.send('home page hello')
+    res.send('Hello, Modern Health')
 })
 
 router.get('/programs', async (req, res) => {
     res.send(await controller.getPrograms({
         id: req.query.id
-    }));
+    }))
 })
 
 router.get('/sections', async (req, res) => {
@@ -22,6 +21,13 @@ router.get('/sections', async (req, res) => {
 router.get('/activities', async (req, res) => {
     res.send(await controller.getActivities({
         id: req.query.id
+    }))
+})
+
+router.get('/options', async (req, res) => {
+    res.send(await controller.getOptions({
+        id: req.query.id,
+        activity_id: req.query.activity_id
     }))
 })
 

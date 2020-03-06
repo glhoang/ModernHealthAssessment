@@ -18,9 +18,7 @@ const db = {
         ).from('programs')
         .join('programs_sections', 'programs.id', 'programs_sections.program_id')
 
-        if (id && id.length > 0) {
-            query.whereIn('id', id)
-        }
+        whereVsWhereInQueryBuilder(query, 'id', id)
 
         query.groupBy('id')
 
@@ -38,9 +36,7 @@ const db = {
         ).from('sections')
         .join('sections_activities', 'sections.id', 'sections_activities.section_id')
             
-        if (id && id.length > 0) {
-            query.whereIn('sections.id', id)
-        }
+        whereVsWhereInQueryBuilder(query, 'id', id)
 
         query.groupBy('id')
         .orderBy('sections.order_idx', 'asc');
@@ -58,14 +54,33 @@ const db = {
         .from('activities')
         .join('sections_activities', 'activities.id', 'sections_activities.activity_id')
 
-        if (id && id.length > 0) {
-            query.whereIn('id', id)
-        }
+        whereVsWhereInQueryBuilder(query, 'id', id)
 
         query.groupBy('id')
 
+        return await query
+    },
+
+    async getAllOptions({ id, activity_id }) {
+        const query = knex.select()
+        .from('options')
+
+        whereVsWhereInQueryBuilder(query, 'id', id)
+        whereVsWhereInQueryBuilder(query, 'activity_id', activity_id)
+        
         return await query
     }
 }
 
 module.exports = db;
+
+function whereVsWhereInQueryBuilder(query, column, value) {
+    if (value) {
+        if (typeof value === 'object') {
+            query.whereIn(column, value)
+        } else {
+            query.where(column, value)
+        } 
+    }
+    return query;
+}
