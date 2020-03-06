@@ -6,19 +6,37 @@ var knex = require('knex')({
         password: 'cheese',
         database: 'myapp'
     },
-});
+})
 
 const db = {
-    async getAllPrograms() {
-        return await knex.select().from('programs')
+    async getAllPrograms({ id }) {
+        const query = knex.select().from('programs')
+
+        if (id && id.length > 0) {
+            query.whereIn('id', id)
+        }
+
+        return await query
     },
     
-    async getAllSections() {
-        return await knex.select().from('sections')
+    async getAllSections({ id }) {
+        const query = knex.select().from('sections')
+
+        if (id && id.length > 0) {
+            query.whereIn('id', id)
+        }
+
+        return await query
     },
     
-    async getAllActivities() {
-        return await knex.select().from('activities')
+    async getAllActivities({ id }) {
+        const query = knex.select().from('activities')
+
+        if (id && id.length > 0) {
+            query.whereIn('id', id)
+        }
+
+        return await query
     }
 }
 

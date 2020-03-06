@@ -8,15 +8,21 @@ router.get('/', (req, res) => {
 })
 
 router.get('/programs', async (req, res) => {
-    res.send(await controller.getPrograms())
+    res.send(await controller.getPrograms({
+        id: req.query.id
+    }));
 })
 
 router.get('/sections', async (req, res) => {
-    res.send(await controller.getSections())
+    res.send(await controller.getSections({
+        id: req.query.id
+    }))
 })
 
 router.get('/activities', async (req, res) => {
-    res.send(await controller.getActivities())
+    res.send(await controller.getActivities({
+        id: req.query.id
+    }))
 })
 
 module.exports = router
