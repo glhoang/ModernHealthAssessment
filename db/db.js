@@ -61,6 +61,12 @@ const db = {
         return await query
     },
 
+    async updateActivity(activityId, updates) {
+        return await knex('activities')
+        .where('id', activityId)
+        .update(updates, ['id', 'html', 'selected_option_id'])
+    },
+
     async getAllOptions({ id, activity_id }) {
         const query = knex.select()
         .from('options')

@@ -24,6 +24,10 @@ router.get('/activities', async (req, res) => {
     }))
 })
 
+router.patch('/activities/:id/select_option/:option_id', async (req, res) => {
+    res.send(await controller.selectActivityOption(req.params.id, req.params.option_id))
+})
+
 router.get('/options', async (req, res) => {
     res.send(await controller.getOptions({
         id: req.query.id,

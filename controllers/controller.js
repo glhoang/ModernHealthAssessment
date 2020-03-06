@@ -13,6 +13,12 @@ const controller = {
         return await db.getAllActivities(queryParams)
     },
 
+    async selectActivityOption(activityId, optionId) {
+        return await db.updateActivity(activityId, {
+            selected_option_id: optionId
+        })
+    },
+
     async getOptions(queryParams) {
         return await db.getAllOptions(queryParams);
     }
