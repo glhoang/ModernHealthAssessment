@@ -5,5 +5,21 @@ var knex = require('knex')({
         user: 'postgres',
         password: 'cheese',
         database: 'myapp'
-    }
+    },
 });
+
+const db = {
+    async getAllPrograms() {
+        return await knex.select().from('programs')
+    },
+    
+    async getAllSections() {
+        return await knex.select().from('sections')
+    },
+    
+    async getAllActivities() {
+        return await knex.select().from('activities')
+    }
+}
+
+module.exports = db;
